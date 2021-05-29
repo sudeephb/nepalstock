@@ -4,15 +4,19 @@ import time
 
 driver = webdriver.Chrome()
 
+SEARCH_SYMBOL = 'NIFRA'
 
-driver.get('http://www.nepalstock.com/company/display/697')
+driver.get('http://www.nepalstock.com/')
 
 stock_symbol_input = driver.find_element_by_xpath("//div[@id='search']//input[@id='stock_symbol']")
-stock_symbol_input.send_keys('NIFRA')
+stock_symbol_input.send_keys(SEARCH_SYMBOL)
 
 search_symbol = driver.find_element_by_xpath("//div[@id='search']//button[@id='search_symbol']")
 search_symbol.click()
 
+exec(SEARCH_SYMBOL+"_url = driver.current_url")
+print('Current URL: ')
+print(eval(SEARCH_SYMBOL+'_url'))
 
 time.sleep(3)
 driver.close()
